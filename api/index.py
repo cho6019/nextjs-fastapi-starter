@@ -25,10 +25,10 @@ def age_calculator(birthday: str) -> Dict[str, str]:
     birth_date = datetime.strptime(birthday, "%Y-%m-%d").date()
     age = today.year - birth_date.year
 
-    if birth_date.month<today.month:
+    if birth_date.month>today.month:
         age=age-1
     elif birth_date.month==today.month:
-        if birth_date.day<today.day:
+        if birth_date.day>today.day:
             age=age-1
     
 
