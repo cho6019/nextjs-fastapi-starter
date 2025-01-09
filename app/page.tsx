@@ -58,11 +58,8 @@ export default function Home() {
 
         {age !== null && (
           <div className="mt-4 text-center text-green-600 font-semibold">
-            Your age: {age}
-          </div><br />
-	  <div className="mt-4 text-center text-green-600 font-semibold">
-	    Your zodiac: {zodiac}
-	  </div>
+            Your age: {age} / Your zodic: {zodiac}
+          </div>
         )}
         {error && (
           <div className="mt-4 text-center text-red-600 font-semibold">
