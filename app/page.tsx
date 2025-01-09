@@ -8,6 +8,7 @@ export default function Home() {
   const [birthday, setBirthday] = useState("");
   const [age, setAge] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [zodiac, setZodiac] = useState<string | mull>(null);
 
   const handleCalculateAge = async () => {
     setError(null);
@@ -24,6 +25,7 @@ export default function Home() {
 
       if (response.ok) {
         setAge(data.age);
+	setZodiac(data.zodiac);
       } else {
         setError(data.error || "Failed to calculate age.");
       }
@@ -57,7 +59,10 @@ export default function Home() {
         {age !== null && (
           <div className="mt-4 text-center text-green-600 font-semibold">
             Your age: {age}
-          </div>
+          </div><br>
+	  <div className="mt-4 text-center text-green-600 font-semibold">
+	    Your zodiac: {zodiac}
+	  </div>
         )}
         {error && (
           <div className="mt-4 text-center text-red-600 font-semibold">
