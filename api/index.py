@@ -48,11 +48,11 @@ def age_calculator(birthday: str) -> Dict[str, str]:
 @app.get("/api/py/ageCalculator/pickStudent")
 def pickStudent():
     studentlist = ["조민규", "강현룡", "백지원", "서민혁", "권오준", "조성근", "전희진", "배형균", "민경국"]
-    randomNumber = random.randint(0, 9)
+    randomNumber = random.randint(0, len(studentlist)-1)
 
     student = studentlist[randomNumber]
 
     return {
-            "student": str(student),
+            "student": student,
             "message": "Picked student successfully!"
             }
