@@ -22,7 +22,7 @@ export default function Home() {
     }
 
     try {
-      const response = await fetch(`/api/py/ageCalculator/${birthday}`);
+      const response = await fetch(`/api/py/ageCalculator/birthday/${birthday}`);
       const data = await response.json();
 
       if (response.ok) {
@@ -89,7 +89,7 @@ export default function Home() {
 	<h1 className="text-3xl font-bold text-center">인원 뽑기</h1>
 
 	<div>
-          <label htmlFor="birthday" className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-gray-700">
             Picking a student (Duplicates are not prevented)
           </label>
         </div>

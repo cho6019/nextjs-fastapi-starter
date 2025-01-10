@@ -11,7 +11,7 @@ app = FastAPI(docs_url="/api/py/docs", openapi_url="/api/py/openapi.json")
 def hello_fast_api():
     return {"message": "Hello from FastAPI"}
 
-@app.get("/api/py/ageCalculator/{birthday}")
+@app.get("/api/py/ageCalculator/birthday/{birthday}")
 def age_calculator(birthday: str) -> Dict[str, str]:
     """
     생년월일을 입력받아 만나이를 계산하는 API
