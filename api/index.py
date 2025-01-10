@@ -11,7 +11,7 @@ app = FastAPI(docs_url="/api/py/docs", openapi_url="/api/py/openapi.json")
 def hello_fast_api():
     return {"message": "Hello from FastAPI"}
 
-@app.get("/api/py/ageCalculator/{birthday}")
+@app.get("/api/py/ageCalculator/birthday/{birthday}")
 def age_calculator(birthday: str) -> Dict[str, str]:
     """
     생년월일을 입력받아 만나이를 계산하는 API
@@ -43,4 +43,16 @@ def age_calculator(birthday: str) -> Dict[str, str]:
             "basedate": str(today),
             "zodiac": zodiac,
             "message": "Age calculated successfully!"
+            }
+
+@app.get("/api/py/ageCalculator/pickStudent")
+def pickStudent():
+    studentlist = ["조민규", "강현룡", "백지원", "서민혁", "권오준", "조성근", "전희진", "배형균", "민경국"]
+    randomNumber = random.randint(0, len(studentlist)-1)
+
+    student = studentlist[randomNumber]
+
+    return {
+            "student": student,
+            "message": "Picked student successfully!"
             }
