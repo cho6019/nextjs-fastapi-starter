@@ -44,9 +44,9 @@ export default function Home() {
 	    const response2 = await fetch(`/api/py/ageCalculator/pickStudent`);
 	    const data2 = await response2.json();
 	if (response2.ok) {
-		setStudent(data.student);
+		setStudent(data2.student);
 	} else {
-		setError2(data.error || "Failed to pick a student");
+		setError2(data2.error || "Failed to pick a student");
 	}
     } catch (err) {
 	    setError2("An error occurred while fetching the API.");
