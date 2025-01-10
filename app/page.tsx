@@ -8,7 +8,9 @@ export default function Home() {
   const [birthday, setBirthday] = useState("");
   const [age, setAge] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [error2, setError2] = useState<string | null>(null);
   const [zodiac, setZodiac] = useState<string | null>(null);
+  const [student, setStudent] = useState<string | null>(null);
 
   const handleCalculateAge = async () => {
     setError(null);
@@ -31,6 +33,23 @@ export default function Home() {
       }
     } catch (err) {
       setError("An error occurred while fetching the API.");
+    }
+  };
+
+
+  const chooseStudent = async() => {
+    setError2(null);
+
+    try {
+	    const response2 = await fetch(`/api/py/ageCalculator/pickStudent`);
+	    const data2 = await response2.json();
+	if (response2.ok) {
+		setStudent(data.student);
+	} else {
+		setError2(data.error || "Failed to pick a student");
+	}
+    } catch (err) {
+	    setError2("An error occurred while fetching the API.");
     }
   };
 
@@ -66,6 +85,31 @@ export default function Home() {
             {error}
           </div>
         )}
+
+	<h1 className="text-3xl font-bold text-center">인원 뽑기</h1>
+
+	<div>
+          <label htmlFor="birthday" className="block text-sm font-medium text-gray-700">
+            Picking a student (Duplicates are not prevented)
+          </label>
+        </div>
+
+	<Button onClick={chooseStudent} className="w-full">
+          Pick!
+        </Button>
+
+	{student !== null && (
+          <div className="mt-4 text-center text-green-600 font-semibold">
+	  {student} picked!!
+          </div>
+        )}
+        {error2 && (
+          <div className="mt-4 text-center text-red-600 font-semibold">
+            {error2}
+          </div>
+        )}
+
+
       </div>
     </div>
   );
