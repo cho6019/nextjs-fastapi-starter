@@ -84,10 +84,12 @@ export default function Home() {
           <div className="mt-4 text-center text-green-600 font-semibold">
             Your age: {age} / Your zodic: {zodiac}
           </div>
+        )}
+	{kage !== null && (
 	  <div className="mt-4 text-center text-green-600 font-semibold">
 	    Your Korean Age: {kage}
 	  </div>
-        )}
+	)}
         {error && (
           <div className="mt-4 text-center text-red-600 font-semibold">
             {error}
