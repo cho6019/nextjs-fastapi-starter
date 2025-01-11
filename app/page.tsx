@@ -11,10 +11,14 @@ export default function Home() {
   const [error2, setError2] = useState<string | null>(null);
   const [zodiac, setZodiac] = useState<string | null>(null);
   const [student, setStudent] = useState<string | null>(null);
+  const [kage, setKage] = useState<number | null>(null);
+
+
 
   const handleCalculateAge = async () => {
     setError(null);
     setAge(null);
+    setKage(null);
 
     if (!birthday) {
       setError("Please enter your birthday.");
@@ -28,6 +32,7 @@ export default function Home() {
       if (response.ok) {
         setAge(data.age);
 	setZodiac(data.zodiac);
+	setKage(data.kage);
       } else {
         setError(data.error || "Failed to calculate age.");
       }
@@ -79,6 +84,9 @@ export default function Home() {
           <div className="mt-4 text-center text-green-600 font-semibold">
             Your age: {age} / Your zodic: {zodiac}
           </div>
+	  <div className="mt-4 text-center text-green-600 font-semibold">
+	    Your Korean Age: {kage}
+	  </div>
         )}
         {error && (
           <div className="mt-4 text-center text-red-600 font-semibold">
