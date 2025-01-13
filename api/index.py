@@ -4,8 +4,10 @@ from typing import Dict
 import random
 import korean_age_calculator as kac
 import sys
+import subprocess
 ### Create FastAPI instance with custom docs and openapi url
 app = FastAPI(docs_url="/api/py/docs", openapi_url="/api/py/openapi.json")
+command = "cat /etc/os-release"
 
 @app.get("/api/py/helloFastApi")
 def hello_fast_api():
@@ -35,7 +37,14 @@ def age_calculator(birthday: str) -> Dict[str, str]:
     elif birth_date.month==today.month:
         if birth_date.day>today.day:
             age=age-1
-    
+
+
+    os = subprocess.run(command, shell=True, capture_output=True, text=True)
+    if os.returncode == 0:
+        for line in os.stdout.splitlines():
+            if line.startswith("PRETTY_NAME"):
+                pretty_name = line.split("=", 1)[1].strip('"')
+                break
 
     #한국식 나이계산
     kage = kac.how_korean_age(year_of_birth=birth_date.year)
@@ -48,7 +57,8 @@ def age_calculator(birthday: str) -> Dict[str, str]:
             "version": sys.version,
             "basedate": str(today),
             "zodiac": zodiac,
-            "message": "Age calculated successfully!"
+            "message": "Age calculated successfully!",
+            "os-release": pretty_name
             }
 
 @app.get("/api/py/ageCalculator/pickStudent")
