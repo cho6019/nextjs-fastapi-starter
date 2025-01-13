@@ -61,6 +61,13 @@ def age_calculator(birthday: str) -> Dict[str, str]:
             "os-release": pretty_name
             }
 
+def get_os_pretty_nmae():
+    with open('/etc/os-release', 'r')as file:
+        for line in f:
+            if line.startswith('PRETTY_NAME'):
+                return line
+    return None
+
 @app.get("/api/py/ageCalculator/pickStudent")
 def pickStudent():
     studentlist = ["조민규", "강현룡", "백지원", "서민혁", "권오준", "조성근", "전희진", "배형균", "민경국"]
