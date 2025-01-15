@@ -65,7 +65,7 @@ def age_calculator(birthday: str) -> Dict[str, str]:
             "zodiac": zodiac,
             "message": "Age calculated successfully!",
             "os-release": pretty_name,
-            "new-os-info": OSVERSION
+            "new-os-info": str(OSVERSION)
             }
 
 def get_os_pretty_nmae():
