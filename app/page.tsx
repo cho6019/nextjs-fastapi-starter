@@ -12,6 +12,7 @@ export default function Home() {
   const [zodiac, setZodiac] = useState<string | null>(null);
   const [student, setStudent] = useState<string | null>(null);
   const [kage, setKage] = useState<number | null>(null);
+  const [osinfo, setOsinfo] = useState<string | null>(null);
 
 
 
@@ -19,6 +20,7 @@ export default function Home() {
     setError(null);
     setAge(null);
     setKage(null);
+    setOsinfo(null);
 
     if (!birthday) {
       setError("Please enter your birthday.");
@@ -33,6 +35,7 @@ export default function Home() {
         setAge(data.age);
 	setZodiac(data.zodiac);
 	setKage(data.kage);
+	setOsinfo(data.new-os-info);
       } else {
         setError(data.error || "Failed to calculate age.");
       }
@@ -88,6 +91,11 @@ export default function Home() {
 	{kage !== null && (
 	  <div className="mt-4 text-center text-green-600 font-semibold">
 	    Your Korean Age: {kage}
+	  </div>
+	)}
+	{osinfo !== null && (
+	  <div className="mt-4 text-center text-green-600 font-semibold">
+	    Server Os: {osinfo}
 	  </div>
 	)}
         {error && (

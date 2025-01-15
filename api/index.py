@@ -5,6 +5,9 @@ import random
 import korean_age_calculator as kac
 import sys
 import subprocess
+from cho_check_os_ver.test_first import check_os
+
+
 ### Create FastAPI instance with custom docs and openapi url
 app = FastAPI(docs_url="/api/py/docs", openapi_url="/api/py/openapi.json")
 command = "cat /etc/os-release"
@@ -49,6 +52,9 @@ def age_calculator(birthday: str) -> Dict[str, str]:
     #한국식 나이계산
     kage = kac.how_korean_age(year_of_birth=birth_date.year)
 
+    #제작 패키지로 버전 확인
+    OSVERSION = check_os()
+
     return {
             "birthday": birthday,
             "age": str(age),
@@ -58,7 +64,8 @@ def age_calculator(birthday: str) -> Dict[str, str]:
             "basedate": str(today),
             "zodiac": zodiac,
             "message": "Age calculated successfully!",
-            "os-release": pretty_name
+            "os-release": pretty_name,
+            "new-os-info": OSVERSION
             }
 
 def get_os_pretty_nmae():

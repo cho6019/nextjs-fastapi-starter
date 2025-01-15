@@ -1,3 +1,4 @@
 fastapi==0.115.0
 uvicorn[standard]==0.30.6
 korean_age_calculator==1.0.0
+cho-check-os-ver==0.4.7
