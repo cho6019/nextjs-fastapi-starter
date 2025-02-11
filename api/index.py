@@ -95,13 +95,7 @@ def pickStudent():
 @app.get("/api/py/select_all")
 def select_all():
     # load_dotenv()
-    query = """SELECT
-    menu_name AS menu,
-    name AS ename,
-    dt
-    FROM lunch_menu as l left join member as m
-    on l.member_name=m.id
-    ORDER BY dt DESC"""
+    query = """select * from view_select_all;"""
     
     with psycopg.connect(**DB_CONFIG, row_factory=dict_row) as conn:
         cur = conn.execute(query)
