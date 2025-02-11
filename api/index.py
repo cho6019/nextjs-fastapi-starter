@@ -101,19 +101,3 @@ def select_all():
         cur = conn.execute(query)
         rows = cur.fetchall()
         return rows
-
-
-# @app.get("/api/py/db")
-# def import_db():
-#     query = """SELECT
-#     menu_name AS menu,
-#     dt
-#     FROM lunch_menu
-#     ORDER BY dt DESC"""
-    
-#     conn = get_connection()
-#     with conn.cursor() as cur:
-#         cur.execute(query)
-#         rows = cur.fetchall()
-#     select_df = pd.DataFrame(rows, columns=['menu', 'dt'])
-#     return select_df
