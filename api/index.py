@@ -5,9 +5,36 @@ import random
 import korean_age_calculator as kac
 import sys
 import pandas as pd
+import psycopg
+from dotenv import load_dotenv
+import os
+from psycopg.rows import dict_row
+
 
 ### Create FastAPI instance with custom docs and openapi url
 app = FastAPI(docs_url="/api/py/docs", openapi_url="/api/py/openapi.json")
+
+load_dotenv()
+db_name = os.getenv("DB_NAME")
+DB_CONFIG = {
+        "user": os.getenv("DB_USERNAME"),
+        "dbname": db_name,
+        "password": os.getenv("DB_PASSWORD"),
+        "host": os.getenv("DB_HOST"),
+        "port": os.getenv("DB_PORT")
+}
+# DB_CONFIG = {
+#         "user": "sunsin",
+#         "dbname": "postgres",
+#         "password": "mysecretpassword",
+#         "host": "localhost",
+#         "port": "5432"
+# }
+
+# def get_connection():
+#     return psycopg.connect(**DB_CONFIG)
+
+
 
 @app.get("/api/py/helloFastApi")
 def hello_fast_api():
@@ -67,12 +94,32 @@ def pickStudent():
 
 @app.get("/api/py/select_all")
 def select_all():
-    data = {
-        "food" : ["짜장면", "국밥", "스파게티"],
-        "taste": ["맛있다", "더 맛있다", "존나 맛있다"],
-        "price": ["싸다", "싼가?", "엄청싸다"]
-    }
+    # load_dotenv()
+    query = """SELECT
+    menu_name AS menu,
+    name AS ename,
+    dt
+    FROM lunch_menu as l left join member as m
+    on l.member_name=m.id
+    ORDER BY dt DESC"""
     
-    df = pd.DataFrame(data)
-    d = df.to_dict()
-    return d
+    with psycopg.connect(**DB_CONFIG, row_factory=dict_row) as conn:
+        cur = conn.execute(query)
+        rows = cur.fetchall()
+        return rows
+
+
+# @app.get("/api/py/db")
+# def import_db():
+#     query = """SELECT
+#     menu_name AS menu,
+#     dt
+#     FROM lunch_menu
+#     ORDER BY dt DESC"""
+    
+#     conn = get_connection()
+#     with conn.cursor() as cur:
+#         cur.execute(query)
+#         rows = cur.fetchall()
+#     select_df = pd.DataFrame(rows, columns=['menu', 'dt'])
+#     return select_df
