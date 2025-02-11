@@ -15,13 +15,13 @@ from psycopg.rows import dict_row
 app = FastAPI(docs_url="/api/py/docs", openapi_url="/api/py/openapi.json")
 
 load_dotenv()
-db_name = os.getenv("DB_NAME")
+db_name = os.getenv("POSTGRES_DATABASE")
 DB_CONFIG = {
-        "user": os.getenv("DB_USERNAME"),
+        "user": os.getenv("POSTGRES_USER"),
         "dbname": db_name,
-        "password": os.getenv("DB_PASSWORD"),
-        "host": os.getenv("DB_HOST"),
-        "port": os.getenv("DB_PORT")
+        "password": os.getenv("POSTGRES_PASSWORD"),
+        "host": os.getenv("POSTGRES_HOST"),
+        "port": os.getenv("DB_PORT", "5432")
 }
 # DB_CONFIG = {
 #         "user": "sunsin",
