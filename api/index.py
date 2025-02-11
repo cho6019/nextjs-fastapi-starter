@@ -4,6 +4,8 @@ from typing import Dict
 import random
 import korean_age_calculator as kac
 import sys
+import pandas as pd
+
 ### Create FastAPI instance with custom docs and openapi url
 app = FastAPI(docs_url="/api/py/docs", openapi_url="/api/py/openapi.json")
 
@@ -62,3 +64,15 @@ def pickStudent():
             "student": student,
             "message": "Picked student successfully!"
             }
+
+@app.get("/api/py/select_all")
+def select_all():
+    data = {
+        "food" : ["짜장면", "국밥", "스파게티"],
+        "taste": ["맛있다", "더 맛있다", "존나 맛있다"],
+        "price": ["싸다", "싼가?", "엄청싸다"]
+    }
+    
+    df = pd.DataFrame(data)
+    d = df.to_dict()
+    return d

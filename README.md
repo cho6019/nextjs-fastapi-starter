@@ -8,7 +8,7 @@ Python 3.10.12
 # $ python -m venv venv
 # 가상화 활성
 $ source venv/bin/activate
-$ uvicorn api.index:app --reload
+$ uvicorn api.index:app --reload  +  /api/py/docs -> fastapi 로컬확인
 ```
 
 # use
