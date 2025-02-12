@@ -1,0 +1,15 @@
+{
+    "endpoints": [
+      {"name": "TOM","url": "https://ac.sunsin.shop/api/py/select_all"},
+      {"name": "jiwon","url": "https://agecal.wodan10.shop/api/py/select_all"},
+      {"name": "heejin","url": "https://age.journeyjean.shop/api/py/select_all"}, 
+      {"name": "hyun","url": "https://agecalculator.calcalhan.store/api/py/select_all"},
+      {"name": "cho6019","url": "https://nextjs-fastapi-starter-5j3bemub7-chominkyus-projects.vercel.app/api/py/select_all"},
+      {"name": "jacob","url": "https://jacob0503.vercel.app/api/py/select_table"},
+      {"name": "nuni","url": "https://ac.nunininu.shop/api/py/select_all"},
+      {"name": "lucas","url": "https://ac.lucas12.store/api/py/select_all"},
+      {"name": "SEO","url":"https://ac.seo-sigma.shop/api/py/select_all"},
+      {"name": "JERRY", "url": "https://jooon.vercel.app/api/py/select_all"}
+    ]
+}
+  
